@@ -29,6 +29,7 @@ alias gcam='git commit -a -m'
 
 plugins=(
     git
+    tmux
 )
 
 # PROMPT
