@@ -32,6 +32,9 @@ plugins=(
     tmux
     magic-enter
     zsh-interactive-cd
+    vi-mode
+    spring
+    screen
     # zsh-navigation-tools
 )
 
