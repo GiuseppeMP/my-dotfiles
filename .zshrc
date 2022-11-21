@@ -30,6 +30,9 @@ alias gcam='git commit -a -m'
 plugins=(
     git
     tmux
+    magic-enter
+    zsh-interactive-cd
+    # zsh-navigation-tools
 )
 
 # PROMPT
@@ -146,7 +149,6 @@ SPACESHIP_VI_MODE_NORMAL="[N]"
 SPACESHIP_VI_MODE_COLOR="white"
 
 
-
 # . /usr/local/opt/asdf/libexec/asdf.sh
 
 # Java home asdf set
@@ -161,7 +163,6 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 export LC_CTYPE=en_US.UTF-8
 
 export GIT_USER=giuseppemp
-
 
 ZSH_THEME="robbyrussell"
 
@@ -194,3 +195,6 @@ zmodload zsh/zprof
 fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
+
+## WARN change to your install folder
+source ~/.oh-my-zsh/oh-my-zsh.sh
