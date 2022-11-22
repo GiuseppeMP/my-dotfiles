@@ -28,14 +28,15 @@ alias g='git'
 alias gcam='git commit -a -m'
 
 plugins=(
-    git
-    tmux
-    magic-enter
-    zsh-interactive-cd
-    vi-mode
-    spring
-    screen
-    # zsh-navigation-tools
+    git # git aliases and suggestions
+    tmux # tmux autosuggestions
+    magic-enter # press Enter to custom commands based on context
+    zsh-interactive-cd # interactive cd for easy navigation
+    vi-mode # vi-mode for terminal
+    spring # spring cli aliases and autocomplete
+    screen # idk anymore
+    mvn # maven aliases
+    z # navigation to folders 
 )
 
 # PROMPT
