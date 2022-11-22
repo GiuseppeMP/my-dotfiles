@@ -26,6 +26,7 @@ plugins=(
     asdf # asdf autosuggestions
     aws # awscli support
     brew # brew alias bubo, bcubc, bcubo
+    zsh-vi-mode
 )
 
 # PROMPT
