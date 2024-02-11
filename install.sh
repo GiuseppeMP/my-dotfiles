@@ -5,3 +5,4 @@ mkdir -p ~/.config
 ln -sf ~/.dotfiles/zsh/.zshrc ~/.zshrc
 ln -sf ~/.dotfiles/starship/starship.toml ~/.config/starship.toml
 ln -sf ~/.dotfiles/kitty ~/.config/kitty
+ln -sf ~/.dotfiles/nvim ~/.config/nvim
