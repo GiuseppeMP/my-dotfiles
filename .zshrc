@@ -1,187 +1,58 @@
-ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
-source ~/.zplug/init.zsh
+# source ~/.zplug/init.zsh
 
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "laggardkernel/zsh-iterm2"
-zplug "Dabz/kafka-zsh-completions"
+# zplug "zsh-users/zsh-autosuggestions"
+# zplug "zsh-users/zsh-syntax-highlighting"
+# zplug "laggardkernel/zsh-iterm2"
+# zplug "Dabz/kafka-zsh-completions"
+# zplug "zdharma-continuum/history-search-multi-word"
 
-SPACESHIP_PROMPT_ASYNC=false
+export HISTSIZE=10000000
+export SAVEHIST=10000000
+
+export BAT_THEME="tokyonight_night"
+export NVIM_OBSIDIAN_VAULTS="~/Documents/beppe-general"
 
 # Aliases
-alias g='git'
-alias gcam='git commit -a -m'
+alias g='git' alias gcam='git commit -a -m'
+alias vim="nvim"
+alias vi="nvim"
+alias oldvim="vim"
+alias ff="fd --type f --hidden --exclude .git | fzf-tmux --bind ctrl-k:preview-page-up,ctrl-j:preview-page-down --preview='bat --color=always --style=numbers {}'  -p | xargs nvim"
+alias pn=pnpm
+alias notes='zi beppe-general && nvim'
 
-plugins=(
-    git # git aliases and suggestions
-    tmux # tmux autosuggestions
-    magic-enter # press Enter to custom commands based on context
-    zsh-interactive-cd # interactive cd for easy navigation
-    spring # spring cli aliases and autocomplete
-    screen # idk anymore
-    mvn # maven aliases
-    z # navigation to folders 
-    aliases # aliases helper $acs
-    asdf # asdf autosuggestions
-    aws # awscli support
-    brew # brew alias bubo, bcubc, bcubo
-    zsh-vi-mode
-)
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/Environment/bin:$PATH"
+export PATH="$HOME/Environment/structurizr-cli-1.20.1:$PATH"
+export PATH="$HOME/Environment/flutter/bin:$PATH"
 
-# PROMPT
-# SPACESHIP_PROMPT_SYMBOL="➜"
-# SPACESHIP_PROMPT_ADD_NEWLINE=true
-# SPACESHIP_PROMPT_SEPARATE_LINE=true
-# SPACESHIP_PROMPT_PREFIXES_SHOW=true
-# SPACESHIP_PROMPT_SUFFIXES_SHOW=true
-# SPACESHIP_PROMPT_DEFAULT_PREFIX="via "
-# SPACESHIP_PROMPT_DEFAULT_SUFFIX=" "
-# SPACESHIP_TIME_SHOW=false
-# SPACESHIP_TIME_PREFIX="at "
-# SPACESHIP_TIME_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_TIME_FORMAT=false
-# SPACESHIP_TIME_12HR=false
-# SPACESHIP_TIME_COLOR="yellow"
-# SPACESHIP_USER_SHOW=true
-# SPACESHIP_USER_PREFIX="with "
-# SPACESHIP_USER_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_USER_COLOR="yellow"
-# SPACESHIP_USER_COLOR_ROOT="red"
-# SPACESHIP_HOST_SHOW=true
-# SPACESHIP_HOST_PREFIX="at "
-# SPACESHIP_HOST_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_HOST_COLOR="green"
-# SPACESHIP_DIR_SHOW=true
-# SPACESHIP_DIR_PREFIX="in "
-# SPACESHIP_DIR_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_DIR_TRUNC=3
-# SPACESHIP_DIR_COLOR="cyan"
-# SPACESHIP_GIT_SHOW=true
-# SPACESHIP_GIT_PREFIX="on "
-# SPACESHIP_GIT_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_GIT_SYMBOL=" "
+#eval $(thefuck --alias)
+export LC_CTYPE=en_US.UTF-8
 
-# # GIT BRANCH
-# SPACESHIP_GIT_BRANCH_SHOW=true
-# SPACESHIP_GIT_BRANCH_PREFIX="$SPACESHIP_GIT_SYMBOL"
-# SPACESHIP_GIT_BRANCH_SUFFIX=""
-# SPACESHIP_GIT_BRANCH_COLOR="magenta"
+export GIT_USER=giuseppemp
+export OPENAI_KEY=`echo $pass | gpg --decrypt ~/.config/secrets/open_ai_key.txt.gpg 2> /dev/null`
 
-# # GIT STATUS
-# SPACESHIP_GIT_STATUS_SHOW=true
-# SPACESHIP_GIT_STATUS_PREFIX=" ["
-# SPACESHIP_GIT_STATUS_SUFFIX="]"
-# SPACESHIP_GIT_STATUS_COLOR="red"
-# SPACESHIP_GIT_STATUS_UNTRACKED="?"
-# SPACESHIP_GIT_STATUS_ADDED="+"
-# SPACESHIP_GIT_STATUS_MODIFIED="!"
-# SPACESHIP_GIT_STATUS_RENAMED="»"
-# SPACESHIP_GIT_STATUS_DELETED="✘"
-# SPACESHIP_GIT_STATUS_STASHED="$"
-# SPACESHIP_GIT_STATUS_UNMERGED="="
-# SPACESHIP_GIT_STATUS_AHEAD="⇡"
-# SPACESHIP_GIT_STATUS_BEHIND="⇣"
-# SPACESHIP_GIT_STATUS_DIVERGED="⇕"
-# SPACESHIP_NODE_SHOW=true
-# SPACESHIP_NODE_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"
-# SPACESHIP_NODE_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_NODE_SYMBOL="⬢ "
-# SPACESHIP_NODE_DEFAULT_VERSION=""
-# SPACESHIP_NODE_COLOR="green"
-# SPACESHIP_RUBY_SHOW=true
-# SPACESHIP_RUBY_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"
-# SPACESHIP_RUBY_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_RUBY_SYMBOL="💎 "
-# SPACESHIP_RUBY_COLOR="red"
-# SPACESHIP_XCODE_SHOW_LOCAL=true
-# SPACESHIP_XCODE_SHOW_GLOBAL=false
-# SPACESHIP_XCODE_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"
-# SPACESHIP_XCODE_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_XCODE_SYMBOL="🛠 "
-# SPACESHIP_XCODE_COLOR="blue"
-# SPACESHIP_SWIFT_SHOW_LOCAL=true
-# SPACESHIP_SWIFT_SHOW_GLOBAL=false
-# SPACESHIP_SWIFT_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"
-# SPACESHIP_SWIFT_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_SWIFT_SYMBOL="🐦 "
-# SPACESHIP_SWIFT_COLOR="yellow"
-# SPACESHIP_GOLANG_SHOW=true
-# SPACESHIP_GOLANG_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"
-# SPACESHIP_GOLANG_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_GOLANG_SYMBOL="🐹 "
-# SPACESHIP_GOLANG_COLOR="cyan"
-# SPACESHIP_PHP_SHOW=true
-# SPACESHIP_PHP_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"
-# SPACESHIP_PHP_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_PHP_SYMBOL="🐘 "
-# SPACEHIP_PHP_COLOR="blue"
-# SPACESHIP_RUST_SHOW=true
-# SPACESHIP_RUST_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"
-# SPACESHIP_RUST_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_RUST_SYMBOL="𝗥 "
-# SPACESHIP_RUST_COLOR="red"
-# SPACESHIP_DOCKER_SHOW=true
-# SPACESHIP_DOCKER_PREFIX="on "
-# SPACESHIP_DOCKER_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_DOCKER_SYMBOL="🐳 "
-# SPACESHIP_DOCKER_COLOR="cyan"
-# SPACESHIP_VENV_SHOW=true
-# SPACESHIP_VENV_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"
-# SPACESHIP_VENV_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_VENV_COLOR="blue"
-# SPACESHIP_PYENV_SHOW=true
-# SPACESHIP_PYENV_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"
-# SPACESHIP_PYENV_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_PYENV_SYMBOL="🐍 "
-# SPACESHIP_PYENV_COLOR="yellow"
-# SPACESHIP_VI_MODE_SHOW=true
-# SPACESHIP_VI_MODE_PREFIX=""
-# SPACESHIP_VI_MODE_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
-# SPACESHIP_VI_MODE_INSERT="[I]"
-# SPACESHIP_VI_MODE_NORMAL="[N]"
-# SPACESHIP_VI_MODE_COLOR="white"
 
+# export SPACESHIP_PROMPT_ASYNC=true
+# export SPACESHIP_VI_MODE_COLOR="white"
+# ZSH_THEME="spaceship"
+# source "$HOME/.config/.zsh/spaceship/spaceship.zsh"
+
+export GRAALVM_HOME=/Library/Java/JavaVirtualMachines/graalvm-22.2.0+java17/Contents/Home
+export PATH=/Library/Java/JavaVirtualMachines/graalvm-22.2.0+java17/Contents/Home/bin:$PATH
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/graalvm-22.2.0+java17/Contents/Home
+
+export ANDROID_SDK=/Users/giuseppemp/Library/Android/sdk
+export PATH=$PATH:$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools
+export PATH=$PATH:$ANDROID_SDK/cmdline-tools/latest/bin
 
 # . /usr/local/opt/asdf/libexec/asdf.sh
 
 # Java home asdf set
 # . ~/.asdf/plugins/java/set-java-home.zsh
 . $HOME/.config/.asdf/asdf.sh
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="$HOME/Environment/bin:$PATH"
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-
-#eval $(thefuck --alias)
-export LC_CTYPE=en_US.UTF-8
-
-export GIT_USER=giuseppemp
-
-# ZSH_THEME="spaceship"
-
-source "$HOME/.config/.zsh/spaceship/spaceship.zsh"
-# SPACESHIP_PROMPT_ORDER=(
-#   user          # Username section
-#   dir           # Current directory section
-#   host          # Hostname section
-#   hg            # Mercurial section (hg_branch  + hg_status)
-#   exec_time     # Execution time
-#   line_sep      # Line break
-#   vi_mode       # Vi-mode indicator
-#   exit_code     # Exit code section
-#   char          # Prompt character
-# )
-
-# SPACESHIP_USER_SHOW=always
-# SPACESHIP_PROMPT_ADD_NEWLINE=false
-# SPACESHIP_CHAR_SYMBOL="❯"
-# SPACESHIP_CHAR_SUFFIX=" "
-
-
-export GRAALVM_HOME=/Library/Java/JavaVirtualMachines/graalvm-22.2.0+java17/Contents/Home
-export PATH=/Library/Java/JavaVirtualMachines/graalvm-22.2.0+java17/Contents/Home/bin:$PATH
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/graalvm-22.2.0+java17/Contents/Home
 
 zmodload zsh/zprof
 
@@ -192,3 +63,97 @@ autoload -Uz compinit && compinit
 
 ## WARN change to your install folder
 source ~/.oh-my-zsh/oh-my-zsh.sh
+
+eval "$(zoxide init zsh)"
+
+## direnv hook
+eval "$(direnv hook zsh)"
+eval "$(starship init zsh)"
+
+export PATH="/usr/local/sbin:$PATH"
+
+# export OPENAI_API_HOST="api.openai.com"
+
+alias update-nvim-stable='asdf uninstall neovim stable && asdf install neovim stable'
+alias update-nvim-nightly='asdf uninstall neovim nightly && asdf install neovim nightly'
+alias update-nvim-master='asdf uninstall neovim ref:master && asdf install neovim ref:master'
+
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+zinit ice depth=1
+
+# Plugin history-search-multi-word loaded with investigating.
+zinit load zdharma-continuum/history-search-multi-word
+
+# Two regular plugins loaded without investigating.
+zinit light zsh-users/zsh-autosuggestions
+
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+zinit light jeffreytse/zsh-vi-mode
+
+zstyle :plugin:history-search-multi-word reset-prompt-protect 1
+
+autoload history-search-multi-word
+zle -N history-search-multi-word
+zle -N history-search-multi-word-backwards history-search-multi-word
+zle -N history-search-multi-word-pbackwards history-search-multi-word
+zle -N history-search-multi-word-pforwards history-search-multi-word
+zstyle ":history-search-multi-word" page-size "8"
+zstyle ":history-search-multi-word" highlight-color "fg=yellow,bold"
+zstyle ":plugin:history-search-multi-word" synhl "yes"
+zstyle ":plugin:history-search-multi-word" clear-on-cancel "no"
+
+plugins=(
+    git # git aliases and suggestions
+    magic-enter # press Enter to custom commands based on context
+    spring # spring cli aliases and autocomplete
+    asdf # asdf autosuggestions
+    zsh-vi-mode
+    # aws # awscli support
+    # history-search-multi-word
+    brew # brew alias bubo, bcubc, bcubo
+    history-search-multi-word
+)
+
+# The plugin will auto execute this zvm_after_init function
+function zvm_after_init() {
+  # zvm_bindkey viins '^Z' fancy-ctrl-z
+    zvm_bindkey viins "^R" history-search-multi-word
+}
+
+# Pomodoro / Focus stuff
+# Requires https://github.com/caarlos0/timer to be installed
+# brew install caarlos0/tap/timer
+
+# Mac setup for pomo
+alias work="timer 30m && terminal-notifier -message 'Pomodoro'\
+        -title 'Work Timer is up! Take a Break 😊'\
+        -appIcon '~/Pictures/pumpkin.png'\
+        -sound Crystal"
+        
+alias break="timer 5m && terminal-notifier -message 'Pomodoro'\
+        -title 'Break is over! Get back to work 😬'\
+        -appIcon '~/Pictures/pumpkin.png'\
+        -sound Crystal"
+
+alias yt="timer 15m && terminal-notifier -message 'Pomodoro'\
+        -title 'YT video is going to far, checkout and take a break! 😬'\
+        -appIcon '~/Pictures/pumpkin.png'\
+        -sound Crystal"
+
+
+# Created by `pipx` on 2024-01-30 23:27:43
+export PATH="$PATH:/Users/giuseppemp/.local/bin"
