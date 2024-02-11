@@ -1,12 +1,11 @@
+# archlinux aliases
+if [[ "$OSTYPE" == "linux"* ]]; then
+        alias sudo='sudo '
+        alias pac='sudo pacman -S '
+fi
+
 export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
-# source ~/.zplug/init.zsh
-
-# zplug "zsh-users/zsh-autosuggestions"
-# zplug "zsh-users/zsh-syntax-highlighting"
-# zplug "laggardkernel/zsh-iterm2"
-# zplug "Dabz/kafka-zsh-completions"
-# zplug "zdharma-continuum/history-search-multi-word"
 
 export HISTSIZE=10000000
 export SAVEHIST=10000000
@@ -15,8 +14,9 @@ export BAT_THEME="tokyonight_night"
 export NVIM_OBSIDIAN_VAULTS="~/Documents/beppe-general"
 
 # Aliases
-alias g='git' alias gcam='git commit -a -m'
-alias vim="nvim"
+alias g='git'
+alias gcam='git commit -a -m'
+# alias vim="nvim"
 alias vi="nvim"
 alias oldvim="vim"
 alias ff="fd --type f --hidden --exclude .git | fzf-tmux --bind ctrl-k:preview-page-up,ctrl-j:preview-page-down --preview='bat --color=always --style=numbers {}'  -p | xargs nvim"
@@ -48,11 +48,11 @@ export ANDROID_SDK=/Users/giuseppemp/Library/Android/sdk
 export PATH=$PATH:$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools
 export PATH=$PATH:$ANDROID_SDK/cmdline-tools/latest/bin
 
-# . /usr/local/opt/asdf/libexec/asdf.sh
+# add asdf to zsh
+. "$HOME/.asdf/asdf.sh"
 
 # Java home asdf set
 # . ~/.asdf/plugins/java/set-java-home.zsh
-. $HOME/.config/.asdf/asdf.sh
 
 zmodload zsh/zprof
 
@@ -93,6 +93,14 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 zinit ice depth=1
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
 
 # Plugin history-search-multi-word loaded with investigating.
 zinit load zdharma-continuum/history-search-multi-word
