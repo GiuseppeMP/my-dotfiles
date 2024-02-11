@@ -2,6 +2,7 @@
 if [[ "$OSTYPE" == "linux"* ]]; then
         alias sudo='sudo '
         alias pac='sudo pacman -S '
+        alias pacu='sudo pacman -U '
 fi
 
 export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
