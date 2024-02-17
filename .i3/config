@@ -82,7 +82,7 @@ bindsym $mod+y border pixel 1
 font xft:FantasqueSansM Nerd Font 13
 
 # Use Mouse+$mod to drag floating windows
-floating_modifier $mod
+floating_modifier $mod+ctrl
 
 # start a terminal
 bindsym $mod+Return exec kitty
@@ -127,10 +127,10 @@ bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart du
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-# bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
+bindsym $mod+Ctrl+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
-# focus_follows_mouse no
+focus_follows_mouse no
 
 # change focus
 bindsym $mod+h focus left
@@ -206,8 +206,8 @@ set $ws3 3:󰲤  Thunar
 set $ws4 4:󰲦  Work
 set $ws5 5:󰲨  Misc
 set $ws6 6:󰲪 󰓇 Music
-set $ws7 7:󰲬 󰗃 Rec
-set $ws8 8:󰲮 󰺵 Fun
+set $ws7 7:󰲬 󰺵 Chill
+set $ws8 8:󰲮 󰺵 FS
 
 # switch workspace monitor
 bindsym $mod+m move workspace to output left
@@ -246,6 +246,12 @@ bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
+assign [class="firefox"] $ws2
+assign [class="kitty"] $ws1
+assign [class="^steam$"] $ws7
+assign [class="^steam_app"] $ws8
+assign [class="^zoom$"] $ws4
+
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
@@ -281,6 +287,18 @@ for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 for_window [class="zoom"] floating enable
+
+# https://github.com/ValveSoftware/steam-for-linux/issues/1040
+for_window [class="^steam$" title="^Friends$"] floating enable
+for_window [class="^steam$" title="Steam - News"] floating enable
+for_window [class="^steam$" title=".* - Chat"] floating enable
+for_window [class="^steam$" title="^Settings$"] floating enable
+for_window [class="^steam$" title=".* - event started"] floating enable
+for_window [class="^steam$" title=".* CD key"] floating enable
+for_window [class="^steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^steam Keyboard$"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -521,7 +539,7 @@ bar {
 
 
 # Autofocus on hover, also when switching workspaces
-    focus_follows_mouse yes
+    # focus_follows_mouse yes
 
 # Borders
     # Also removes all title bars
@@ -546,6 +564,6 @@ bar {
     smart_gaps on
 
 exec_always --no-startup-id "xset r rate 180 40"
-exec --no-startup-id "xrandr --output DisplayPort-2 --primary --mode 1920x1080 --output HDMI-A-0 --mode 1920x1080 --left-of DisplayPort-2"
 
-# exec --no-startup-id "feh --bg-scale /home/giuseppemp/Pictures/1265.png"
+exec --no-startup-id "xrandr --output DisplayPort-2 --primary --mode 1920x1080 -r 144 --output HDMI-A-0 --mode 1920x1080 -r 75 --left-of DisplayPort-2"
+# exec --no-startup-id "xrandr --output DisplayPort-2 --primary --mode 1920x1080 -r 165"

@@ -3,6 +3,7 @@ if [[ "$OSTYPE" == "linux"* ]]; then
         alias sudo='sudo '
         alias pac='sudo pacman -S '
         alias pacu='sudo pacman -U '
+        alias yayi='yay -Ss '
 fi
 
 export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
@@ -79,6 +80,11 @@ alias update-nvim-stable='asdf uninstall neovim stable && asdf install neovim st
 alias update-nvim-nightly='asdf uninstall neovim nightly && asdf install neovim nightly'
 alias update-nvim-master='asdf uninstall neovim ref:master && asdf install neovim ref:master'
 
+# monitors
+
+alias x_use_both_monitors='xrandr --output DisplayPort-2 --primary --mode 1920x1080 -r 144 --output HDMI-A-0 --mode 1920x1080 -r 75 --left-of DisplayPort-2'
+
+alias x_use_only_one='xrandr --output DisplayPort-2 --primary --mode 1920x1080 -r 165 --output HDMI-A-0 --off'
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
