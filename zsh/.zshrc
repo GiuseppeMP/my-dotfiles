@@ -3,11 +3,20 @@ if [[ "$OSTYPE" == "linux"* ]]; then
         alias sudo='sudo '
         alias pac='sudo pacman -S '
         alias pacu='sudo pacman -U '
-        alias yayi='yay -Ss '
+        alias yays='yay -Ss --noconfirm '
+        alias yayi='yay -S --noconfirm '
 fi
 
 export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
+export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
+if test -n "$KITTY_INSTALLATION_DIR"; then
+    export KITTY_SHELL_INTEGRATION="enabled"
+    autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
+    kitty-integration
+    unfunction kitty-integration
+fi
 
 export HISTSIZE=10000000
 export SAVEHIST=10000000
@@ -54,7 +63,7 @@ export PATH=$PATH:$ANDROID_SDK/cmdline-tools/latest/bin
 . "$HOME/.asdf/asdf.sh"
 
 # Java home asdf set
-# . ~/.asdf/plugins/java/set-java-home.zsh
+. ~/.asdf/plugins/java/set-java-home.zsh
 
 zmodload zsh/zprof
 
@@ -113,11 +122,13 @@ zinit light-mode for \
 zinit load zdharma-continuum/history-search-multi-word
 
 # Two regular plugins loaded without investigating.
-zinit light zsh-users/zsh-autosuggestions
+zinit load zsh-users/zsh-autosuggestions
 
-zinit light zdharma-continuum/fast-syntax-highlighting
+zinit load zdharma-continuum/fast-syntax-highlighting
 
-zinit light jeffreytse/zsh-vi-mode
+zinit load jeffreytse/zsh-vi-mode
+
+zinit load mrjohannchang/zsh-interactive-cd
 
 zstyle :plugin:history-search-multi-word reset-prompt-protect 1
 
@@ -141,6 +152,7 @@ plugins=(
     # history-search-multi-word
     brew # brew alias bubo, bcubc, bcubo
     history-search-multi-word
+    zsh-interactive-cd
 )
 
 # The plugin will auto execute this zvm_after_init function

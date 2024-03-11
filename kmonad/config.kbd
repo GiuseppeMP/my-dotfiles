@@ -1,0 +1,46 @@
+(defcfg
+  fallthrough true
+  input  (device-file "/dev/input/by-id/usb-OBINS_OBINS_AnnePro2_00000000000000000000000000000000-event-kbd")
+  output (uinput-sink "KMonad kbd"))
+
+(defalias
+  fn (layer-toggle function)
+  ;; fn (around (layer-toggle function) fn)
+  ;; off (layer-switch off)
+  ;; a (tap-next-release a lmet)
+  ;; s (tap-next-release s lalt)
+  ;; d (tap-next-release d lctl)
+  ;; f (tap-next-release f @fn)
+  ;; j (tap-next-release j @fn)
+  ;; k (tap-next-release k rctl)
+  ;; l (tap-next-release l ralt)
+  ;; ; (tap-next-release ; rmet)
+  ;; spc (tap-next-release spc lsft)
+  ;; num (layer-toggle numbers)
+  lctl (tap-next esc lctl)
+)
+
+(defsrc
+  `     1    2    3    4    5    6    7    8    9    0    -     =      bspc
+  tab   q    w    e    r    t    y    u    i    o    p    [     ]      \
+  caps  a    s    d    f    g    h    j    k    l    ;    '     ret
+  lsft  z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl  lmet    lalt      spc       ralt - rmet rctl
+  )
+
+
+(deflayer base
+  `     1    2    3    4    5    6    7    8    9    0    -     =      bspc
+  tab   q    w    e    r    t    y    u    i    o    p    [     ]      \
+  caps  a    s    d    f    g    h    j    k    l    ;    '     ret
+  lsft  z    x    c    v    b    n    m    ,    .    /    rsft
+  @lctl  @fn   lalt      spc       ralt - rmet rctl
+  )
+
+(deflayer function
+  esc     1    2    3    4    5    6    7    8    9    0    -     =      bspc
+  tab   q    w    e    r    t    y    u    i    o    p    [     ]      \
+  caps  a    s    d    f    g    h    j    k    l    ;    '     ret
+  lsft  z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl  lmet   lalt      spc       ralt - rmet rctl
+  )
