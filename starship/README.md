@@ -1,3 +1,20 @@
+# Starship 
+
+https://starship.rs/guide/
+
+## Install
+
+```sh
+brew install starship
+mkdir -p ~/.config && touch ~/.config/starship.toml
+
+# add the following to your ~/.zshrc
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+```
+
+## Config
+
+```toml
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
@@ -24,3 +41,4 @@ disabled = true
 
 [aws]
 disabled = true
+```
