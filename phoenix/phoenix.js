@@ -42,19 +42,26 @@ const full = {
 
 // Binds
 
-quakeApp({
-    key: "return",
-    modifiers: ["cmd", "shift"],
-    appName: "kitty",
-    position: full,
-    followsMouse: true,
-    hideOnBlur: false
-});
+//quakeApp({
+//    key: "return",
+//    modifiers: ["cmd", "shift"],
+//    appName: "WezTerm",
+//    position: full,
+//    followsMouse: true,
+//    hideOnBlur: false
+//});
 
 openApp({
     key: "f",
-    modifiers: ["cmd", "ctrl"],
-    appName: "Firefox"
+    modifiers: ["cmd", "shift"],
+    appName: "Firefox",
+    followsMouse: true,
+});
+
+openApp({
+    key: "return",
+    modifiers: ["cmd", "shift"],
+    appName: "WezTerm",
 });
 
 openApp({
@@ -163,13 +170,14 @@ function openApp({
 
         let [app, opened] = await startApp(appName, { focus: true });
 
-        console.log("beforeMoveAppToActiveSpace" + app);
 
-        const { moved, space } = moveAppToActiveSpace(app, true);
-
-        console.log("afterMoveAppToActiveSpace" + app);
 
         if (app !== undefined) {
+
+            const { moved, space } = moveAppToActiveSpace(app, true);
+            const activeScreen = space.screens()[0];
+            const screen = activeScreen.flippedVisibleFrame();
+
             if (app.isActive() && !opened) {
                 console.log("Hide" + app.hide());
             } else {
@@ -335,17 +343,12 @@ async function startApp(appName) {
 
     // get the app if it is open
     let app = await App.get(appName);
-    console.log("startApp" + appName);
-    console.log("startApp" + app);
 
     let opened = false;
 
     // if app is open
     if (app !== undefined) {
-        // make sure it has an open window
-
-        console.log(app.windows());
-        console.log(app.windows().length);
+        const { moved, space } = moveAppToActiveSpace(app, true);
         if (app.windows().length === 0) {
 
             console.log("execute reopen");

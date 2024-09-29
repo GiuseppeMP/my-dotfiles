@@ -15,6 +15,13 @@ brew install --cask phoenix
 
 For more example see the [phoenix.js](./phoenix.js)
 
+To install this configuration, refer to the Makefile located at ./Makefile.
+
+```sh
+cd ./phoenix
+make
+```
+
 ```js
 // You can use guakeApp or startApp to bind things
 // Example:
