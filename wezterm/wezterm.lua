@@ -6,7 +6,7 @@ local c = {}
 config.foreground_text_hsb = {
     hue = 1.0,
     saturation = 1.0,
-    brightness = 0.8,
+    brightness = 0.80,
 }
 config.hide_tab_bar_if_only_one_tab = true
 local selected_scheme = "tokyonight_moon";
@@ -58,7 +58,7 @@ config.dpi_by_screen = {
     ['LG HDR WQHD'] = 109,
 }
 config.window_decorations = "RESIZE"
-config.font_size = 16
+config.font_size = 13
 config.native_macos_fullscreen_mode = false
 config.animation_fps = 0
 config.cursor_blink_ease_in = 'Constant'
@@ -78,11 +78,30 @@ local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
 
 config.keys = {
     {
-        key = 'Enter',
-        mods = 'SHIFT|ALT',
+        key = 'f',
+        mods = 'LEADER',
         action = wezterm.action.ToggleFullScreen,
     },
+    -- CMD-y starts `top` in a new window
+    {
+        key = 'x',
+        mods = 'LEADER',
+        action = wezterm.action.SpawnCommandInNewWindow {
+            args = { 'htop' },
+        },
+    },
+    {
+        key = 'q',
+        mods = 'LEADER',
+        action = wezterm.action.CloseCurrentTab { confirm = true },
+    },
+    {
+        key = 't',
+        mods = 'LEADER',
+        action = wezterm.action.SpawnTab 'CurrentPaneDomain',
+    },
 }
+config.leader = { key = ' ', mods = 'CTRL', timeout_milliseconds = 5001 }
 wezterm.on('gui-startup', function(cmd)
     -- local _tab, _pane, window = mux.spawn_window(cmd or {})
     -- _pane:send_text('zellij a welcome \n')
@@ -92,14 +111,14 @@ wezterm.on('gui-startup', function(cmd)
     -- window:gui_window():maximize()
 end)
 config.window_padding = {
-    left = 0,
+    left = 5,
     right = 0,
     top = 0,
-    bottom = 0,
+    bottom = 5,
 }
 config.window_background_opacity = 100
 config.window_background_image_hsb = {
-    brightness = 0.4,
+    brightness = 0.5,
     hue = 1.0,
     saturation = 1.0,
 }
